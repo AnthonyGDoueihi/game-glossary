@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { setAuthToken } from '../helper/setToken'
 
 import styled from '@emotion/styled'
 
@@ -31,6 +32,14 @@ class Header extends Component{
       username: "TODO get username as props"
     }
 
+    this._signOut = this._signOut.bind(this);
+
+  }
+
+  _signOut(e){
+    setAuthToken();
+    document.cookie = "token="
+    this.props.recheckCookie();
   }
 
   render(){
@@ -38,7 +47,7 @@ class Header extends Component{
 
     if( this.state.token ){
       rightNavRender = (
-          <Link to="/">Sign Out</Link>
+          <Link to="/" onClick={this._signOut}>Sign Out</Link>
       )
     }else{
       rightNavRender = (

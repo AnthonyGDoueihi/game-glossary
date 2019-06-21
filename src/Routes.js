@@ -7,7 +7,6 @@ import App from "./components/App"
 import Home from "./components/Home"
 import Signup from "./components/user/Signup"
 import Login from "./components/user/Login"
-import PageLayout from "./components/PageLayout"
 
 import { getCookie } from './helper/cookie'
 
@@ -18,6 +17,12 @@ class Routes extends Component{
     this.state = {
       token: getCookie()
     }
+
+    this.recheckCookie = this.recheckCookie.bind(this);
+  }
+
+  recheckCookie(){
+    this.setState({ token: getCookie() })
   }
 
     render(){
@@ -61,7 +66,9 @@ class Routes extends Component{
             <Route exact
               path='/login'
               render={ (routeProps) => (
-                <Login {...routeProps} token={ this.state.token }/>
+                <Login {...routeProps}
+                  token={ this.state.token }
+                  recheckCookie={ this.recheckCookie }/>
               )}
             />
             <Route

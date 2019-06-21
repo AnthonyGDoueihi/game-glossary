@@ -5,7 +5,6 @@ class NodeSystem extends Component{
     return(
       <div>
         <p>HELLO NODE</p>
-          <p>{this.props.token}</p>
       </div>
     )
   }

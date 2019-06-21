@@ -4,10 +4,8 @@ import { withRouter } from 'react-router'
 import PageLayout from "../PageLayout"
 
 const axios = require('axios');
-
-
 const SERVER_URL = "http://localhost:4000/login"
-//TODO make properly
+
 class Login extends Component{
   constructor(props){
     super(props);
@@ -44,7 +42,9 @@ class Login extends Component{
         password: ""
       })
 
-      //TODO set the state all the way up with token
+      setAuthToken(result.data.data.token);
+
+      this.props.recheckCookie();
       this.props.history.push(`/${result.data.data.user.urlname}`);
 
     })
@@ -52,7 +52,7 @@ class Login extends Component{
 
   render(){
     return(
-      <PageLayout token={ this.props.token }>
+      <PageLayout recheckCookie={this.props.recheckCookie} token={ this.props.token }>
         <form onSubmit={ this._handleSubmit }>
           <label>
             Email:

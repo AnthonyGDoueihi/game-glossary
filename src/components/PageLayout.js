@@ -23,7 +23,7 @@ class PageLayout extends Component{
   render(){
     return(
       <Background>
-        <Header urlname={ this.props.urlname } token={  this.props.token }/>
+        <Header recheckCookie={this.props.recheckCookie} urlname={ this.props.urlname } token={  this.props.token }/>
         <Container>
           { this.props.children }
         </Container>
