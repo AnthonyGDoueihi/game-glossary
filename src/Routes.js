@@ -1,21 +1,42 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
+import { Global, css } from '@emotion/core'
+import GoogleFontLoader from 'react-google-font-loader';
 
+import App from "./components/App"
 import Home from "./components/Home"
-import NodeSystem from "./components/NodeSystem"
-import Glossary from "./components/Glossary"
-import Search from "./components/Search"
-
 
 const Routes = (
-  <Router>
-    <div>
-      <Route path='/:username/search' component={ Search } />
-      <Route path='/:username/:glossname' component={ Glossary } />
-      <Route path='/:username' component={ NodeSystem } />
+    <Router>
+      <GoogleFontLoader
+        fonts={[
+          {
+            font: 'Kalam',
+            weights: [400, 700],
+          },
+          {
+            font: 'Open Sans',
+            weights: [300, 400, 600, 700],
+          },
+        ]}
+      />
+      <Global
+      styles={css`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Open Sans', sans-serif;
+        }
+      `}
+      />
+
       <Route exact path='/' component={ Home } />
-    </div>
-  </Router>
+      <Route path='/:username' component={ App } />
+    </Router>
 );
+
+// font-family: 'Kalam', cursive;
+// font-family: 'Open Sans', sans-serif;
 
 export default Routes;

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { setAuthToken } from '../helper/setToken'
+import { withRouter } from 'react-router'
 const axios = require('axios');
 
 const SERVER_URL = "http://localhost:4000/login"
-
+//TODO make properly
 class Login extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       email: "",
       password: ""
@@ -39,6 +40,9 @@ class Login extends Component{
         email: "",
         password: ""
       })
+
+      this.props.history.push(`/${result.data.data.user.urlname}`);
+
     })
   }
 
@@ -61,4 +65,4 @@ class Login extends Component{
   }
 }
 
-export default Login
+export default withRouter(Login)

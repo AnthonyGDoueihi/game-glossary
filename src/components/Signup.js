@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 const axios = require('axios');
 
 const SERVER_URL = "http://localhost:4000/signup"
-
+//TODO make properly
 class Signup extends Component {
   constructor(){
     super();
