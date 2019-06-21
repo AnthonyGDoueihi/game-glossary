@@ -9,6 +9,8 @@ class Glossary extends Component{
   render(){
     return(
       <div>
+        <p>HELLO GLOSSARY</p>
+        <p>{this.props.token}</p>
       </div>
     )
   }

@@ -9,6 +9,8 @@ class Search extends Component{
   render(){
     return(
       <div>
+        <p>HELLO SEARCH</p>
+          <p>{this.props.token}</p>
       </div>
     )
   }

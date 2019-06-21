@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { setAuthToken } from '../helper/setToken'
+import { setAuthToken } from '../../helper/setToken'
 import { withRouter } from 'react-router'
+import PageLayout from "../PageLayout"
+
 const axios = require('axios');
+
 
 const SERVER_URL = "http://localhost:4000/login"
 //TODO make properly
@@ -41,6 +44,7 @@ class Login extends Component{
         password: ""
       })
 
+      //TODO set the state all the way up with token
       this.props.history.push(`/${result.data.data.user.urlname}`);
 
     })
@@ -48,19 +52,21 @@ class Login extends Component{
 
   render(){
     return(
-      <form onSubmit={ this._handleSubmit }>
-        <label>
-          Email:
-            <input type="email" value={ this.state.email } onChange={   this._handleEmail } required />
-          </label>
+      <PageLayout token={ this.props.token }>
+        <form onSubmit={ this._handleSubmit }>
+          <label>
+            Email:
+              <input type="email" value={ this.state.email } onChange={     this._handleEmail } required />
+            </label>
 
-        <label>
-          Password:
-          <input type="password" value={ this.state.password } onChange={ this._handlePassword } required />
-        </label>
+            <label>
+              Password:
+              <input type="password" value={ this.state.password } onChange={   this._handlePassword } required />
+            </label>
 
-        <input type="submit" value="Join" />
-      </form>
+            <input type="submit" value="Join" />
+          </form>
+      </PageLayout>
     )
   }
 }

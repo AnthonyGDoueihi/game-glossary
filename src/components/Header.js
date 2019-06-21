@@ -27,35 +27,33 @@ class Header extends Component{
     super(props);
     this.state = {
       token: this.props.token,
-      urlname: this.props.urlname
+      urlname: this.props.urlname,
+      username: "TODO get username as props"
     }
 
   }
 
   render(){
-    let midNavRenderer;
     let rightNavRender;
 
     if( this.state.token ){
       rightNavRender = (
-          <div>
-            <p>TODO Sign Out</p>
-          </div>
+          <Link to="/">Sign Out</Link>
       )
     }else{
       rightNavRender = (
-          <div>
-            <p>TODO Sign Up</p>
-            <p>TODO Log In</p>
-          </div>
+        <div>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Log In</Link>
+        </div>
       )
     }
 
+    let midNavRenderer;
+
     if( this.state.urlname ){
       midNavRenderer = (
-          <div>
-            <p>TODO Link To {this.state.urlname}</p>
-          </div>
+            <Link to={`/${this.state.urlname}`}>{ this.state.username }</Link>
       )
     }
 

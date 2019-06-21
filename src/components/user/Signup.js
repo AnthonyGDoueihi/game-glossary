@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import PageLayout from "../PageLayout"
+
+
 const axios = require('axios');
 
 const SERVER_URL = "http://localhost:4000/signup"
@@ -64,7 +67,7 @@ class Signup extends Component {
 
   render(){
     return(
-      <div>
+      <PageLayout token={ this.props.token }>
         <form onSubmit={ this._handleSubmit }>
           <label>
             Username:
@@ -88,7 +91,7 @@ class Signup extends Component {
 
           <input type="submit" value="Join" />
         </form>
-      </div>
+      </PageLayout>
     )
   }
 }
