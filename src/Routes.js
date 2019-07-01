@@ -25,10 +25,10 @@ class Routes extends Component{
     this.setState({ token: getCookie() })
   }
 
-    render(){
-      return(
-        <Router>
-          <GoogleFontLoader
+  render(){
+    return(
+      <Router>
+        <GoogleFontLoader
             fonts={[
               {
                 font: 'Kalam',
@@ -39,49 +39,49 @@ class Routes extends Component{
                 weights: [300, 400, 600, 700],
               },
             ]}
-          />
-          <Global styles={css`
+        />
+        <Global styles={css`
             * {
               margin: 0;
               padding: 0;
               box-sizing: border-box;
               font-family: 'Open Sans', sans-serif;
             }
-          `}
+        `}
+        />
+
+        <Switch>
+          <Route exact
+            path='/'
+            render={ (routeProps) => (
+              <Home {...routeProps} token={ this.state.token }/>
+            )}
           />
+          <Route exact
+            path='/signup'
+            render={ (routeProps) => (
+              <Signup {...routeProps} token={ this.state.token }/>
+            )}
+          />
+          <Route exact
+            path='/login'
+            render={ (routeProps) => (
+              <Login {...routeProps}
+                token={ this.state.token }
+                recheckCookie={ this.recheckCookie }/>
+            )}
+          />
+          <Route
+            path='/:urlname'
+            render={ (routeProps) => (
+              <App {...routeProps} token={ this.state.token }/>
+            )}
+          />
+        </Switch>
 
-          <Switch>
-            <Route exact
-              path='/'
-              render={ (routeProps) => (
-                <Home {...routeProps} token={ this.state.token }/>
-              )}
-            />
-            <Route exact
-              path='/signup'
-              render={ (routeProps) => (
-                <Signup {...routeProps} token={ this.state.token }/>
-              )}
-            />
-            <Route exact
-              path='/login'
-              render={ (routeProps) => (
-                <Login {...routeProps}
-                  token={ this.state.token }
-                  recheckCookie={ this.recheckCookie }/>
-              )}
-            />
-            <Route
-              path='/:username'
-              render={ (routeProps) => (
-                <App {...routeProps} token={ this.state.token }/>
-              )}
-            />
-          </Switch>
-
-        </Router>
-      )
-    }
+      </Router>
+    )
+  }
 }
 
 // font-family: 'Kalam', cursive;

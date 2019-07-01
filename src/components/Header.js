@@ -10,17 +10,26 @@ const Height = styled.div`
   align-items: center;
   height: 2.5em;
   color: black;
+
 `
 
 const LeftNav = styled.div`
-  padding-left: 2.5em;
+  margin-left: 2em;
+  display: flex;
 `
 const RightNav = styled.div`
-  padding-right: 2.5em;
+  margin-right: 2em;
+  display: flex;
 `
 
 const MidNav = styled.div`
 
+`
+
+const StyleLink = styled.p`
+  padding: 0 0.5em;
+  color: black;
+  text-shadow: 0.1em 0.1em #F7B500;
 `
 
 class Header extends Component{
@@ -47,29 +56,37 @@ class Header extends Component{
 
     if( this.state.token ){
       rightNavRender = (
-          <Link to="/" onClick={this._signOut}>Sign Out</Link>
+          <Link style={{ textDecoration: 'none' }} to="/" onClick={this._signOut}><StyleLink>Sign Out</StyleLink></Link>
       )
     }else{
       rightNavRender = (
-        <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Log In</Link>
-        </div>
+        <>
+          <Link style={{ textDecoration: 'none' }} to="/signup"><StyleLink>Sign Up</StyleLink></Link>
+          <Link style={{ textDecoration: 'none' }} to="/login"><StyleLink>Log In</StyleLink></Link>
+        </>
       )
     }
 
     let midNavRenderer;
+    let leftNavRenderer;
 
     if( this.state.urlname ){
       midNavRenderer = (
-            <Link to={`/${this.state.urlname}`}>{ this.state.username }</Link>
+        <StyleLink>{ this.state.username }</StyleLink>
+      )
+
+      leftNavRenderer = (
+        <>
+          <Link style={{ textDecoration: 'none' }} to={`/${this.state.urlname}`}><StyleLink>Folders</StyleLink></Link>
+          <Link style={{ textDecoration: 'none' }} to={`/${this.state.urlname}/search`}><StyleLink>Search</StyleLink></Link>
+        </>
       )
     }
 
       return(
         <Height>
           <LeftNav>
-            <Link to="/" />
+            { leftNavRenderer }
           </LeftNav>
           <MidNav>
             { midNavRenderer }

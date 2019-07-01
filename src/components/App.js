@@ -9,18 +9,14 @@ import Search from "./Search"
 
 
 class App extends Component{
-  constructor(){
-    super();
-  }
-
   render(){
       return(
-        <PageLayout urlname={ this.props.match.params.username } token={ this.props.token } >
+        <PageLayout urlname={ this.props.match.params.urlname } token={ this.props.token } >
           <Switch>
             <Route exact
               path='/:urlname'
               render={ (routeProps) => (
-                <NodeSystem {...routeProps} token={ this.props.token }/>
+                <NodeSystem {...routeProps} token={ this.props.token } />
               )}
             />
             <Route
