@@ -26,7 +26,7 @@ class App extends Component{
               )}
             />
             <Route
-              path='/:urlname/:glossname'
+              path='/:urlname/:titlename'
               render={ (routeProps) => (
                 <Glossary {...routeProps} token={ this.props.token }/>
               )}

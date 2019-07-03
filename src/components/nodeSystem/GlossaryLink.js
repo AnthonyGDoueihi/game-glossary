@@ -5,7 +5,7 @@ class GlossaryLink extends Component{
   render(){
     return(
       <>
-        <Link to={`/${ this.props.userUrlname }/${ this.props.glossUrlname }`}>{ this.props.title }</Link>
+        <Link to={`/${ this.props.urlname }/${ this.props.urltitle }`}>{ this.props.title }</Link>
       </>
     )
   }

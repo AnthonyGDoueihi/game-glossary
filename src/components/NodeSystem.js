@@ -23,7 +23,6 @@ class NodeSystem extends Component{
     }
 
     axios.get( SERVER_URL + this.props.match.params.urlname ).then( (result) => {
-      console.log(result);
       this.setState({
         nodes: result.data.nodes,
         glossaries: result.data.glossaries
@@ -32,18 +31,49 @@ class NodeSystem extends Component{
 
   }
 
-  spawnChildNodes(childArray){
+  drawNode(id){
+    if (!this.state.nodes){
+      return "";
+    }
 
+    const node = this.state.nodes.find( element => element._id === id );
+    const returnNodes = [];
+
+    node.childrenId.forEach( id => {
+      if ( id ){
+        const test = this.drawNode(id);
+        returnNodes.push(test);
+    }})
+
+    node.childGlossaryId.forEach( id => {
+      if ( id ){
+        const test = this.drawGloss(id);
+        returnNodes.push(test);
+    }})
+
+    return <Node key={node._id} name={node.name}>{ returnNodes }</Node>
   }
 
-  spawnChildGlossaries(childArray){
+  drawGloss(id){
+    if (!this.state.glossaries){
+      return "";
+    }
 
+    const gloss = this.state.glossaries.find( element => element._id === id );
+
+    return <GlossaryLink key={ gloss._id } title={ gloss.title } urlname={ this.props.match.params.urlname } urltitle={ gloss.urltitle }/>
   }
 
   render(){
+    let rootid = "";
+
+    if (this.state.nodes){
+      rootid = this.state.nodes.find( element => element.isRoot === true )._id;
+    }
+
     return(
       <div>
-        <p>HELLO NODE</p>
+        { this.drawNode(rootid) }
       </div>
     )
   }
